@@ -1,5 +1,6 @@
 package com.ubs.opsit.interviews.model;
 
+import com.ubs.opsit.interviews.engine.BerlinClockEngine;
 import com.ubs.opsit.interviews.model.light.Light;
 import com.ubs.opsit.interviews.model.light.RedLight;
 import com.ubs.opsit.interviews.model.light.YellowLight;
@@ -24,7 +25,11 @@ public class BerlinClock {
     private final List<Light> fiveMinutesLights = new ArrayList<>(FIVE_MINUTES_ROW_SIZE);
     private final List<Light> minuteLights = new ArrayList<>(MINUTE_ROW_SIZE);
 
-    public BerlinClock() { 
+    private BerlinClockEngine engine;
+    
+    public BerlinClock(BerlinClockEngine berlinClockEngine) { 
+        
+        this.engine = berlinClockEngine;
         
         twoSecondsLight = new YellowLight();
         
@@ -49,6 +54,10 @@ public class BerlinClock {
         }        
     }
 
+    public void init(BerlinClockInputTime berlinClockInputTime) {
+        engine.init(this, berlinClockInputTime);
+    }
+    
     public Light getTwoSecondsLight() {
         return twoSecondsLight;
     }
@@ -75,6 +84,14 @@ public class BerlinClock {
     
     public void turnAllTheLightsOff() {
         forAllLight(light -> light.switchOff());
+    }
+
+    public void setEngine(BerlinClockEngine engine) {
+        this.engine = engine;
+    }
+
+    public BerlinClockEngine getEngine() {
+        return engine;
     }
     
     private void forAllLight(Consumer<? super Light> action) {

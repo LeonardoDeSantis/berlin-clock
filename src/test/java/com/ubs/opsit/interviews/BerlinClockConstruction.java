@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class BerlinClockConstruction {
     
-    private BerlinClock berlinClock = new BerlinClock();
+    private BerlinClock berlinClock = new BerlinClock(null);
     private BerlinClockRenderer berlinClockRenderer = new InterviewStoryRenderer();
     
     @Test

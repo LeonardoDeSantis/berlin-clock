@@ -20,11 +20,10 @@ public class TimeConverterImpl implements TimeConverter {
     public String convertTime(String aTime) {
         logger.debug("Received:" + aTime);        
 
-        BerlinClock berlinClock = new BerlinClock();
-        BerlinClockEngine berlinClockEngine = new TimeBasedEngine();
+        BerlinClock berlinClock = new BerlinClock(new TimeBasedEngine());
         BerlinClockRenderer berlinClockRenderer = new InterviewStoryRenderer();
         
-        berlinClockEngine.init(berlinClock, new BerlinClockInputTime(aTime));
+        berlinClock.init(new BerlinClockInputTime(aTime));
 
         String convertedTime = berlinClockRenderer.render(berlinClock);
 
