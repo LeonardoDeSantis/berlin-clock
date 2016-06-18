@@ -5,8 +5,8 @@ import com.ubs.opsit.interviews.model.light.RedLight;
 import com.ubs.opsit.interviews.model.light.YellowLight;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class BerlinClock {
 
@@ -46,12 +46,6 @@ public class BerlinClock {
         }        
     }
 
-    public void init(Date date) {
-        
-        //TODO: turn the lights on
-        
-    }
-
     public Light getTwoSecondsLight() {
         return twoSecondsLight;
     }
@@ -70,6 +64,22 @@ public class BerlinClock {
 
     public List<Light> getMinuteLights() {
         return Collections.unmodifiableList(minuteLights);
+    }
+    
+    public void turnAllTheLightsOn() {
+        forAllLight(light -> light.switchOn());
+    }
+    
+    public void turnAllTheLightsOff() {
+        forAllLight(light -> light.switchOff());
+    }
+    
+    private void forAllLight(Consumer<? super Light> action) {
+        action.accept(twoSecondsLight);
+        fiveHoursLights.forEach(action);
+        hourLights.forEach(action);
+        fiveMinutesLights.forEach(action);
+        minuteLights.forEach(action);
     }
     
 }
