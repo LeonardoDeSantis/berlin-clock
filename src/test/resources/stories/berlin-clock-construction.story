@@ -9,7 +9,7 @@ Narrative:
     So that someone else can implements the engine to light them up without worries.
 
 Scenario: All switched off
-When the the lights are all OFF
+When the lights are all OFF
 Then the clock should look like
 O
 OOOO
@@ -18,7 +18,7 @@ OOOOOOOOOOO
 OOOO
 
 Scenario: All switched on
-When the the lights are all ON
+When the lights are all ON
 Then the clock should look like
 Y
 RRRR

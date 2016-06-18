@@ -22,8 +22,8 @@ public class BerlinClockConstruction {
                 .run();
     }
     
-    @When("When the the lights are all $")
-    public void whenTheLightAreAll(String lightsStatus) throws Exception {
+    @When("the lights are all $")
+    public void whenTheLightsAreAll(String lightsStatus) throws Exception {
         switch (lightsStatus) {
             case "OFF": berlinClock.turnAllTheLightsOff();
             break;
