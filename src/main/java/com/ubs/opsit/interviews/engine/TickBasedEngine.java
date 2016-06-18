@@ -15,6 +15,9 @@ public class TickBasedEngine implements BerlinClockEngine {
     @Override
     public void init(BerlinClock berlinClock, BerlinClockInputTime time) {
 
+        logger.debug("Initialing berlin clock with time:" + time);
+        
+        berlinClock.turnAllTheLightsOff();
         Date before = new Date();
         
         int totalAmountOfSeconds = time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();

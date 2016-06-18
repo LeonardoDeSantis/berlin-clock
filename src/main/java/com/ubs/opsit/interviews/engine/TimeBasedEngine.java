@@ -1,6 +1,5 @@
 package com.ubs.opsit.interviews.engine;
 
-import com.ubs.opsit.interviews.TimeConverterImpl;
 import com.ubs.opsit.interviews.model.BerlinClock;
 import com.ubs.opsit.interviews.model.BerlinClockInputTime;
 import org.slf4j.Logger;
@@ -8,13 +7,14 @@ import org.slf4j.LoggerFactory;
 
 public class TimeBasedEngine implements BerlinClockEngine {
 
-    private final Logger logger = LoggerFactory.getLogger(TimeConverterImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(TimeBasedEngine.class);
 
     @Override
     public void init(BerlinClock berlinClock, BerlinClockInputTime time) {
 
         logger.debug("Initialing berlin clock with time:" + time);
-
+        
+        berlinClock.turnAllTheLightsOff();
         int fiveHoursLights, hourLights, fiveMinutesLights, minuteLights;
 
         fiveHoursLights = time.getHours() / BerlinClock.FIVE_HOURS_SOCKET_VALUE;
