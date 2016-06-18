@@ -15,6 +15,9 @@ public class BerlinClock {
     private static final int FIVE_MINUTES_ROW_SIZE = 11;
     private static final int MINUTE_ROW_SIZE = 4;
     
+    public static final int FIVE_HOURS_SOCKET_VALUE = 5;
+    public static final int FIVE_MINUTES_SOCKET_VALUE = 5;
+        
     private final Light twoSecondsLight;
     private final List<Light> fiveHoursLights = new ArrayList<>(FIVE_HOURS_ROW_SIZE);
     private final List<Light> hourLights = new ArrayList<>(HOUR_ROW_SIZE);
