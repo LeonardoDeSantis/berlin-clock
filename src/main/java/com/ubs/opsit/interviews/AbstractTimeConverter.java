@@ -1,35 +1,30 @@
 package com.ubs.opsit.interviews;
 
-import com.ubs.opsit.interviews.engine.BerlinClockEngine;
-import com.ubs.opsit.interviews.engine.TimeBasedEngine;
 import com.ubs.opsit.interviews.model.BerlinClock;
 import com.ubs.opsit.interviews.model.BerlinClockInputTime;
 import com.ubs.opsit.interviews.rendering.BerlinClockRenderer;
 import com.ubs.opsit.interviews.rendering.InterviewStoryRenderer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TimeConverterImpl implements TimeConverter {
-
-    private final Logger logger = LoggerFactory.getLogger(TimeConverterImpl.class);
-
+public abstract class AbstractTimeConverter implements TimeConverter {
+    
+    protected final Logger logger = LoggerFactory.getLogger(AbstractTimeConverter.class);
+    
+    protected BerlinClock berlinClock;
+    
+    public AbstractTimeConverter() {    
+        berlinClock = new BerlinClock(null);
+    }
+  
     @Override
     public String convertTime(String aTime) {
-        logger.debug("Received:" + aTime);        
-
-        BerlinClock berlinClock = new BerlinClock(new TimeBasedEngine());
+        logger.debug("Received:" + aTime); 
         BerlinClockRenderer berlinClockRenderer = new InterviewStoryRenderer();
-        
         berlinClock.init(new BerlinClockInputTime(aTime));
-
         String convertedTime = berlinClockRenderer.render(berlinClock);
-
         logger.debug("Returning:" + convertedTime);
-
         return convertedTime;
     }
-
+    
 }

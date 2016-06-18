@@ -13,17 +13,27 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BerlinClockFixture {
 
-    private TimeConverter berlinClock = new TimeConverterImpl();
+    private TimeConverter berlinClock;
     private String theTime;
 
     @Test
     public void berlinClockAcceptanceTests() throws Exception {
+        berlinClock = new TimeBasedTimeConverter();
         aBehaviouralTestRunner()
                 .usingStepsFrom(this)
                 .withStory("berlin-clock.story")
                 .run();
     }
 
+    @Test
+    public void berlinClockAcceptanceTestsTickBased() throws Exception {
+        berlinClock = new TickBasedTimeConverter();
+        aBehaviouralTestRunner()
+                .usingStepsFrom(this)
+                .withStory("berlin-clock.story")
+                .run();
+    }
+    
     @When("the time is $time")
     public void whenTheTimeIs(String time) {
         theTime = time;
