@@ -37,7 +37,7 @@ public class BerlinClock {
         }
 
         for (int i = 0; i < FIVE_MINUTES_ROW_SIZE; i++) {
-            if (i + 1 % 3 == 0) {
+            if ((i + 1) % 3 == 0) {
                 fiveMinutesLights.add(i, new RedLight());
             } else {
                 fiveMinutesLights.add(i, new YellowLight());
