@@ -4,6 +4,6 @@ import com.ubs.opsit.interviews.model.BerlinClock;
 
 public interface BerlinClockRenderer {
     
-    public String render(BerlinClock berlinClock) throws Exception ;
+    public String render(BerlinClock berlinClock) throws IllegalArgumentException ;
     
 }

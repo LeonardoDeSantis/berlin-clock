@@ -13,7 +13,7 @@ public class InterviewStoryRenderer implements BerlinClockRenderer {
     private static final String YELLOW_STR = "Y";
 
     @Override
-    public String render(BerlinClock berlinClock) throws Exception {
+    public String render(BerlinClock berlinClock) throws IllegalArgumentException {
 
         StringBuilder output = new StringBuilder();
 
@@ -48,7 +48,7 @@ public class InterviewStoryRenderer implements BerlinClockRenderer {
         
     }
 
-    private String getStringFromLight(Light light) throws Exception {
+    private String getStringFromLight(Light light) throws IllegalArgumentException {
         if (light.isSwitchedOn()) {
             return getStringFromColor(light.getColor());
         } else {
@@ -56,14 +56,14 @@ public class InterviewStoryRenderer implements BerlinClockRenderer {
         }
     }
     
-    private String getStringFromColor(LightColor color) throws Exception {
+    private String getStringFromColor(LightColor color) throws IllegalArgumentException {
         switch (color) {
             case RED:
                 return RED_STR;
             case YELLOW:
                 return YELLOW_STR;
             default: {
-                throw new Exception("Unknown color");
+                throw new IllegalArgumentException("Unknown color");
             }
         }
     }
