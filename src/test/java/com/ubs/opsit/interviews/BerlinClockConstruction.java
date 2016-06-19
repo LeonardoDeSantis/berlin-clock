@@ -23,11 +23,11 @@ public class BerlinClockConstruction {
     }
     
     @When("the lights are all $")
-    public void whenTheLightsAreAll(String lightsStatus) throws Exception {
+    public void whenTheLampsAreAll(String lightsStatus) throws Exception {
         switch (lightsStatus) {
-            case "OFF": berlinClock.turnAllTheLightsOff();
+            case "OFF": berlinClock.turnAllTheLampsOff();
             break;
-            case "ON": berlinClock.turnAllTheLightsOn();
+            case "ON": berlinClock.turnAllTheLampsOn();
             break;
             default: throw new Exception("Unknown lights status");
         }        

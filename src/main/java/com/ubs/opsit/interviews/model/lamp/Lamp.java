@@ -1,15 +1,15 @@
-package com.ubs.opsit.interviews.model.light;
+package com.ubs.opsit.interviews.model.lamp;
 
-public abstract class Light {
+public abstract class Lamp {
     
     private boolean switchedOn = false;
-    protected LightColor color;
+    protected LampColor color;
 
     public boolean isSwitchedOn() {
         return switchedOn;
     }
 
-    public LightColor getColor() {
+    public LampColor getColor() {
         return color;
     }
     
@@ -23,7 +23,7 @@ public abstract class Light {
 
     @Override
     public String toString() {
-        return "Light{" + "switchedOn=" + switchedOn + ", color=" + color + '}';
+        return "Lamp{" + "switchedOn=" + switchedOn + ", color=" + color + '}';
     }
 
 }

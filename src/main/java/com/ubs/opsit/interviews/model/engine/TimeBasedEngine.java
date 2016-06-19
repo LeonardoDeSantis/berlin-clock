@@ -14,39 +14,39 @@ public class TimeBasedEngine implements BerlinClockEngine {
 
         logger.debug("Initialing berlin clock with time:" + time);
         
-        berlinClock.turnAllTheLightsOff();
-        int fiveHoursLights, hourLights, fiveMinutesLights, minuteLights;
+        berlinClock.turnAllTheLampsOff();
+        int fiveHoursLamps, hourLamps, fiveMinutesLamps, minuteLamps;
 
-        fiveHoursLights = time.getHours() / BerlinClock.FIVE_HOURS_SOCKET_VALUE;
-        hourLights = time.getHours() % BerlinClock.FIVE_HOURS_SOCKET_VALUE;
-        fiveMinutesLights = time.getMinutes() / BerlinClock.FIVE_MINUTES_SOCKET_VALUE;
-        minuteLights = time.getMinutes() % BerlinClock.FIVE_MINUTES_SOCKET_VALUE;
+        fiveHoursLamps = time.getHours() / BerlinClock.FIVE_HOURS_SOCKET_VALUE;
+        hourLamps = time.getHours() % BerlinClock.FIVE_HOURS_SOCKET_VALUE;
+        fiveMinutesLamps = time.getMinutes() / BerlinClock.FIVE_MINUTES_SOCKET_VALUE;
+        minuteLamps = time.getMinutes() % BerlinClock.FIVE_MINUTES_SOCKET_VALUE;
 
-        logger.debug("Light numbers are fiveHoursLights:" + fiveHoursLights
-                + " hourLights:" + hourLights
-                + " fiveMinutesLights:" + fiveMinutesLights
-                + " minuteLights:" + minuteLights);
+        logger.debug("Lamp numbers are fiveHoursLamps:" + fiveHoursLamps
+                + " hourLamps:" + hourLamps
+                + " fiveMinutesLamps:" + fiveMinutesLamps
+                + " minuteLamps:" + minuteLamps);
 
         if (time.getSeconds() % 2 == 0) {
-            berlinClock.getTwoSecondsLight().switchOn();
+            berlinClock.getTwoSecondsLamp().switchOn();
         } else {
-            berlinClock.getTwoSecondsLight().switchOff();
+            berlinClock.getTwoSecondsLamp().switchOff();
         }
 
-        for (int i = 0; i < fiveHoursLights; i++) {
-            berlinClock.getFiveHoursLights().get(i).switchOn();
+        for (int i = 0; i < fiveHoursLamps; i++) {
+            berlinClock.getFiveHoursLamps().get(i).switchOn();
         }
 
-        for (int i = 0; i < hourLights; i++) {
-            berlinClock.getHourLights().get(i).switchOn();
+        for (int i = 0; i < hourLamps; i++) {
+            berlinClock.getHourLamps().get(i).switchOn();
         }
 
-        for (int i = 0; i < fiveMinutesLights; i++) {
-            berlinClock.getFiveMinutesLights().get(i).switchOn();
+        for (int i = 0; i < fiveMinutesLamps; i++) {
+            berlinClock.getFiveMinutesLamps().get(i).switchOn();
         }
 
-        for (int i = 0; i < minuteLights; i++) {
-            berlinClock.getMinuteLights().get(i).switchOn();
+        for (int i = 0; i < minuteLamps; i++) {
+            berlinClock.getMinuteLamps().get(i).switchOn();
         }
     }
 }

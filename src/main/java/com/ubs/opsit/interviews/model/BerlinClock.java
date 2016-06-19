@@ -1,9 +1,9 @@
 package com.ubs.opsit.interviews.model;
 
 import com.ubs.opsit.interviews.model.engine.BerlinClockEngine;
-import com.ubs.opsit.interviews.model.light.Light;
-import com.ubs.opsit.interviews.model.light.RedLight;
-import com.ubs.opsit.interviews.model.light.YellowLight;
+import com.ubs.opsit.interviews.model.lamp.Lamp;
+import com.ubs.opsit.interviews.model.lamp.RedLamp;
+import com.ubs.opsit.interviews.model.lamp.YellowLamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,11 +19,11 @@ public class BerlinClock {
     public static final int FIVE_HOURS_SOCKET_VALUE = 5;
     public static final int FIVE_MINUTES_SOCKET_VALUE = 5;
         
-    private final Light twoSecondsLight;
-    private final List<Light> fiveHoursLights = new ArrayList<>(FIVE_HOURS_ROW_SIZE);
-    private final List<Light> hourLights = new ArrayList<>(HOUR_ROW_SIZE);
-    private final List<Light> fiveMinutesLights = new ArrayList<>(FIVE_MINUTES_ROW_SIZE);
-    private final List<Light> minuteLights = new ArrayList<>(MINUTE_ROW_SIZE);
+    private final Lamp twoSecondsLamp;
+    private final List<Lamp> fiveHoursLamps = new ArrayList<>(FIVE_HOURS_ROW_SIZE);
+    private final List<Lamp> hourLamps = new ArrayList<>(HOUR_ROW_SIZE);
+    private final List<Lamp> fiveMinutesLamps = new ArrayList<>(FIVE_MINUTES_ROW_SIZE);
+    private final List<Lamp> minuteLamps = new ArrayList<>(MINUTE_ROW_SIZE);
 
     private BerlinClockEngine engine;
     
@@ -31,26 +31,26 @@ public class BerlinClock {
         
         this.engine = berlinClockEngine;
         
-        twoSecondsLight = new YellowLight();
+        twoSecondsLamp = new YellowLamp();
         
         for (int i = 0; i < FIVE_HOURS_ROW_SIZE; i++) {
-            fiveHoursLights.add(i, new RedLight());
+            fiveHoursLamps.add(i, new RedLamp());
         }
 
         for (int i = 0; i < HOUR_ROW_SIZE; i++) {
-            hourLights.add(i, new RedLight());
+            hourLamps.add(i, new RedLamp());
         }
 
         for (int i = 0; i < FIVE_MINUTES_ROW_SIZE; i++) {
             if ((i + 1) % 3 == 0) {
-                fiveMinutesLights.add(i, new RedLight());
+                fiveMinutesLamps.add(i, new RedLamp());
             } else {
-                fiveMinutesLights.add(i, new YellowLight());
+                fiveMinutesLamps.add(i, new YellowLamp());
             }
         }
 
         for (int i = 0; i < MINUTE_ROW_SIZE; i++) {
-            minuteLights.add(i, new YellowLight());
+            minuteLamps.add(i, new YellowLamp());
         }        
     }
 
@@ -58,32 +58,32 @@ public class BerlinClock {
         engine.init(this, berlinClockInputTime);
     }
     
-    public Light getTwoSecondsLight() {
-        return twoSecondsLight;
+    public Lamp getTwoSecondsLamp() {
+        return twoSecondsLamp;
     }
 
-    public List<Light> getFiveHoursLights() {
-        return Collections.unmodifiableList(fiveHoursLights);
+    public List<Lamp> getFiveHoursLamps() {
+        return Collections.unmodifiableList(fiveHoursLamps);
     }
 
-    public List<Light> getHourLights() {
-        return Collections.unmodifiableList(hourLights);
+    public List<Lamp> getHourLamps() {
+        return Collections.unmodifiableList(hourLamps);
     }
 
-    public List<Light> getFiveMinutesLights() {
-        return Collections.unmodifiableList(fiveMinutesLights);
+    public List<Lamp> getFiveMinutesLamps() {
+        return Collections.unmodifiableList(fiveMinutesLamps);
     }
 
-    public List<Light> getMinuteLights() {
-        return Collections.unmodifiableList(minuteLights);
+    public List<Lamp> getMinuteLamps() {
+        return Collections.unmodifiableList(minuteLamps);
     }
     
-    public void turnAllTheLightsOn() {
-        forAllLight(light -> light.switchOn());
+    public void turnAllTheLampsOn() {
+        forAllLamp(lamp -> lamp.switchOn());
     }
     
-    public void turnAllTheLightsOff() {
-        forAllLight(light -> light.switchOff());
+    public void turnAllTheLampsOff() {
+        forAllLamp(lamp -> lamp.switchOff());
     }
 
     public void setEngine(BerlinClockEngine engine) {
@@ -94,12 +94,12 @@ public class BerlinClock {
         return engine;
     }
     
-    private void forAllLight(Consumer<? super Light> action) {
-        action.accept(twoSecondsLight);
-        fiveHoursLights.forEach(action);
-        hourLights.forEach(action);
-        fiveMinutesLights.forEach(action);
-        minuteLights.forEach(action);
+    private void forAllLamp(Consumer<? super Lamp> action) {
+        action.accept(twoSecondsLamp);
+        fiveHoursLamps.forEach(action);
+        hourLamps.forEach(action);
+        fiveMinutesLamps.forEach(action);
+        minuteLamps.forEach(action);
     }
     
 }

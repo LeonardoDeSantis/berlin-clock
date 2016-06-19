@@ -2,7 +2,7 @@ package com.ubs.opsit.interviews.model.engine;
 
 import com.ubs.opsit.interviews.model.BerlinClock;
 import com.ubs.opsit.interviews.model.BerlinClockInputTime;
-import com.ubs.opsit.interviews.model.light.Light;
+import com.ubs.opsit.interviews.model.lamp.Lamp;
 import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class TickBasedEngine implements BerlinClockEngine {
 
         logger.debug("Initialing berlin clock with time:" + time);
         
-        berlinClock.turnAllTheLightsOff();
+        berlinClock.turnAllTheLampsOff();
         Date before = new Date();
         
         int totalAmountOfSeconds = time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();
@@ -26,38 +26,38 @@ public class TickBasedEngine implements BerlinClockEngine {
         for (int i = 0; i <= totalAmountOfSeconds; i++) {
 
             if (i % 2 == 0) {
-                berlinClock.getTwoSecondsLight().switchOn();
+                berlinClock.getTwoSecondsLamp().switchOn();
             } else {
-                berlinClock.getTwoSecondsLight().switchOff();
+                berlinClock.getTwoSecondsLamp().switchOff();
             }
 
             if (i != 0 && i % 60 == 0) {
                 
                 //Minute handling
-                if (!areAllLightsOn(berlinClock.getMinuteLights())) {
-                    switchOnNextLight(berlinClock.getMinuteLights());
+                if (!areAllLampsOn(berlinClock.getMinuteLamps())) {
+                    switchOnNextLamp(berlinClock.getMinuteLamps());
                 } else {                    
-                    switchOffAllLights(berlinClock.getMinuteLights());
+                    switchOffAllLamps(berlinClock.getMinuteLamps());
 
                     //5 minutes handling
-                    if (!areAllLightsOn(berlinClock.getFiveMinutesLights())) {
-                        switchOnNextLight(berlinClock.getFiveMinutesLights());
+                    if (!areAllLampsOn(berlinClock.getFiveMinutesLamps())) {
+                        switchOnNextLamp(berlinClock.getFiveMinutesLamps());
                     } else {
-                        switchOffAllLights(berlinClock.getFiveMinutesLights());
+                        switchOffAllLamps(berlinClock.getFiveMinutesLamps());
 
                         //hour handling
-                        if (!areAllLightsOn(berlinClock.getHourLights())) {
-                            switchOnNextLight(berlinClock.getHourLights());
+                        if (!areAllLampsOn(berlinClock.getHourLamps())) {
+                            switchOnNextLamp(berlinClock.getHourLamps());
                         } else {
-                            switchOffAllLights(berlinClock.getHourLights());
+                            switchOffAllLamps(berlinClock.getHourLamps());
                             
                             //5 hours handling
-                            if (!areAllLightsOn(berlinClock.getFiveHoursLights())) {
-                                switchOnNextLight(berlinClock.getFiveHoursLights());
+                            if (!areAllLampsOn(berlinClock.getFiveHoursLamps())) {
+                                switchOnNextLamp(berlinClock.getFiveHoursLamps());
                             } else {
-                                switchOffAllLights(berlinClock.getFiveHoursLights());
-                                switchOffAllLights(berlinClock.getHourLights());
-                                switchOnNextLight(berlinClock.getHourLights());
+                                switchOffAllLamps(berlinClock.getFiveHoursLamps());
+                                switchOffAllLamps(berlinClock.getHourLamps());
+                                switchOnNextLamp(berlinClock.getHourLamps());
                             }
                         }
                     }
@@ -68,21 +68,21 @@ public class TickBasedEngine implements BerlinClockEngine {
         logger.debug("Initialization done in:" + (after.getTime() - before.getTime()) + " ms");
     }
 
-    protected void switchOnNextLight(List<Light> lights) {
-        for (Light light : lights) {
-            if (!light.isSwitchedOn()) {
-                light.switchOn();
+    protected void switchOnNextLamp(List<Lamp> lamps) {
+        for (Lamp lamp : lamps) {
+            if (!lamp.isSwitchedOn()) {
+                lamp.switchOn();
                 break;
             }
         }
     }
 
-    protected void switchOffAllLights(List<Light> lights) {
-        lights.forEach(light -> light.switchOff());
+    protected void switchOffAllLamps(List<Lamp> lamps) {
+        lamps.forEach(lamp -> lamp.switchOff());
     }
 
-    protected boolean areAllLightsOn(List<Light> lights) {
-        return lights.stream().noneMatch(light -> !light.isSwitchedOn());
+    protected boolean areAllLampsOn(List<Lamp> lamps) {
+        return lamps.stream().noneMatch(lamp -> !lamp.isSwitchedOn());
     }
 
 }
