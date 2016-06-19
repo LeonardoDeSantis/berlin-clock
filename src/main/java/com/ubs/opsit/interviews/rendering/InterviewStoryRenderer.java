@@ -4,6 +4,10 @@ import com.ubs.opsit.interviews.model.BerlinClock;
 import com.ubs.opsit.interviews.model.lamp.Lamp;
 import com.ubs.opsit.interviews.model.lamp.LampColor;
 
+/**
+ * Implementation of a BerlinClockRenderer to satisfy the acceptance test
+ * layout
+ */
 public class InterviewStoryRenderer implements BerlinClockRenderer {
 
     private final static String NL = System.getProperty("line.separator");

@@ -5,6 +5,10 @@ import com.ubs.opsit.interviews.model.BerlinClockInputTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This BerlinClockEngine knows the lights status bases on direct time calculations,
+ * it does only know the final clock state, it ignores all the intermediate ones.
+ */
 public class TimeBasedEngine implements BerlinClockEngine {
 
     private final Logger logger = LoggerFactory.getLogger(TimeBasedEngine.class);

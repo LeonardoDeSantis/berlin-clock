@@ -9,16 +9,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * A BerlinClock is composed by rows of lamps and by an engine. Every lamp can
+ * be yellow or red. The Clock itself is only responsible for the lamps
+ * "installation" during the construction phase, and it is only capable of
+ * actions like switch all on or off. The logic on how the lamps must be turned
+ * on based on time calculation is the Engine responsibility.
+ */
 public class BerlinClock {
 
     private static final int FIVE_HOURS_ROW_SIZE = 4;
     private static final int HOUR_ROW_SIZE = 4;
     private static final int FIVE_MINUTES_ROW_SIZE = 11;
     private static final int MINUTE_ROW_SIZE = 4;
-    
+
     public static final int FIVE_HOURS_SOCKET_VALUE = 5;
     public static final int FIVE_MINUTES_SOCKET_VALUE = 5;
-        
+
     private final Lamp twoSecondsLamp;
     private final List<Lamp> fiveHoursLamps = new ArrayList<>(FIVE_HOURS_ROW_SIZE);
     private final List<Lamp> hourLamps = new ArrayList<>(HOUR_ROW_SIZE);
@@ -26,13 +33,13 @@ public class BerlinClock {
     private final List<Lamp> minuteLamps = new ArrayList<>(MINUTE_ROW_SIZE);
 
     private BerlinClockEngine engine;
-    
-    public BerlinClock(BerlinClockEngine berlinClockEngine) { 
-        
+
+    public BerlinClock(BerlinClockEngine berlinClockEngine) {
+
         this.engine = berlinClockEngine;
-        
+
         twoSecondsLamp = new YellowLamp();
-        
+
         for (int i = 0; i < FIVE_HOURS_ROW_SIZE; i++) {
             fiveHoursLamps.add(i, new RedLamp());
         }
@@ -51,13 +58,13 @@ public class BerlinClock {
 
         for (int i = 0; i < MINUTE_ROW_SIZE; i++) {
             minuteLamps.add(i, new YellowLamp());
-        }        
+        }
     }
 
     public void init(BerlinClockInputTime berlinClockInputTime) {
         engine.init(this, berlinClockInputTime);
     }
-    
+
     public Lamp getTwoSecondsLamp() {
         return twoSecondsLamp;
     }
@@ -77,11 +84,11 @@ public class BerlinClock {
     public List<Lamp> getMinuteLamps() {
         return Collections.unmodifiableList(minuteLamps);
     }
-    
+
     public void turnAllTheLampsOn() {
         forAllLamp(lamp -> lamp.switchOn());
     }
-    
+
     public void turnAllTheLampsOff() {
         forAllLamp(lamp -> lamp.switchOff());
     }
@@ -93,7 +100,7 @@ public class BerlinClock {
     public BerlinClockEngine getEngine() {
         return engine;
     }
-    
+
     private void forAllLamp(Consumer<? super Lamp> action) {
         action.accept(twoSecondsLamp);
         fiveHoursLamps.forEach(action);
@@ -101,5 +108,5 @@ public class BerlinClock {
         fiveMinutesLamps.forEach(action);
         minuteLamps.forEach(action);
     }
-    
+
 }
