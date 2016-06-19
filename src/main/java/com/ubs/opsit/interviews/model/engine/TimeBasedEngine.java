@@ -1,4 +1,4 @@
-package com.ubs.opsit.interviews.engine;
+package com.ubs.opsit.interviews.model.engine;
 
 import com.ubs.opsit.interviews.model.BerlinClock;
 import com.ubs.opsit.interviews.model.BerlinClockInputTime;

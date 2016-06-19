@@ -1,6 +1,6 @@
 package com.ubs.opsit.interviews.model;
 
-import com.ubs.opsit.interviews.engine.BerlinClockEngine;
+import com.ubs.opsit.interviews.model.engine.BerlinClockEngine;
 import com.ubs.opsit.interviews.model.light.Light;
 import com.ubs.opsit.interviews.model.light.RedLight;
 import com.ubs.opsit.interviews.model.light.YellowLight;

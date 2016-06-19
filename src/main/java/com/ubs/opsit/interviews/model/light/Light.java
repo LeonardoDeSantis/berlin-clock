@@ -2,7 +2,7 @@ package com.ubs.opsit.interviews.model.light;
 
 public abstract class Light {
     
-    protected boolean switchedOn = false;
+    private boolean switchedOn = false;
     protected LightColor color;
 
     public boolean isSwitchedOn() {
